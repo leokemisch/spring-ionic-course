@@ -1,7 +1,6 @@
 package com.kemisch.course.resources;
 
-import com.kemisch.course.domain.Category;
-import com.kemisch.course.service.CategoryService;
+import com.kemisch.course.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,7 +1,8 @@
-package com.kemisch.course.service;
+package com.kemisch.course.services;
 
 import com.kemisch.course.domain.Category;
 import com.kemisch.course.repositories.CategoryRepository;
+import com.kemisch.course.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class CategoryService {
     public Category findById(Integer id) {
         Optional<Category> category = repository.findById(id);
 
-        return category.orElse(null);
+        return category.orElseThrow(() -> new NotFoundException("Object not found! Id: " + id + ", type: " + Category.class.getName()));
     }
 
 }
