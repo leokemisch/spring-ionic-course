@@ -1,5 +1,6 @@
 package com.kemisch.course.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kemisch.course.domain.enums.ClientType;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Client implements Serializable {
     private Integer type;
 
     @OneToMany(mappedBy = "client")
+    @JsonManagedReference
     private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection

@@ -1,5 +1,7 @@
 package com.kemisch.course.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -25,6 +27,7 @@ public class Address implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference
     private Client client;
 
     public Address() {
