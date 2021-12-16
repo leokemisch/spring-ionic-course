@@ -32,6 +32,9 @@ public class Client implements Serializable {
     @CollectionTable(name = "phones")
     private Set<String> phones = new HashSet<>();
 
+    @OneToMany(mappedBy = "client")
+    private List<Request> requests = new ArrayList<>();
+
     public Client() {
     }
 
@@ -99,5 +102,15 @@ public class Client implements Serializable {
         this.phones = phones;
     }
 
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
 }
