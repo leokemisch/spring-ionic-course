@@ -3,7 +3,9 @@ package com.kemisch.course.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "request")
@@ -25,6 +27,9 @@ public class Request implements Serializable {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToMany(mappedBy = "id.request")
+    private Set<RequestItem> items = new HashSet<>();
 
     public Request() {
     }
@@ -75,6 +80,14 @@ public class Request implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<RequestItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<RequestItem> items) {
+        this.items = items;
     }
 
     @Override
