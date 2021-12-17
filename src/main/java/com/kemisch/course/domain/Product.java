@@ -1,6 +1,5 @@
 package com.kemisch.course.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,11 +18,11 @@ public class Product implements Serializable {
     private String name;
     private Double price;
 
-    @JsonBackReference //Faz com que não traga a lista, evitando loop
+    @JsonIgnore //Faz com que não traga a lista, evitando loop
     @ManyToMany
     @JoinTable(name = "product_category",
-        joinColumns = @JoinColumn(name="product_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id"))
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
 
     @JsonIgnore
