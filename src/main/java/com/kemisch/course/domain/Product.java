@@ -1,6 +1,7 @@
 package com.kemisch.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,9 +26,11 @@ public class Product implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<RequestItem> items = new HashSet<>();
 
+    @JsonIgnore
     public List<Request> getRequests() {
         List<Request> list = new ArrayList<>();
         items.forEach(x -> list.add(x.GetRequest()));

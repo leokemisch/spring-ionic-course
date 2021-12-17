@@ -1,5 +1,6 @@
 package com.kemisch.course.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kemisch.course.domain.enums.ClientType;
 
@@ -32,6 +33,7 @@ public class Client implements Serializable {
     @CollectionTable(name = "phones")
     private Set<String> phones = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "client")
     private List<Request> requests = new ArrayList<>();
 
