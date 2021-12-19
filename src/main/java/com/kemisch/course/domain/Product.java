@@ -18,7 +18,7 @@ public class Product implements Serializable {
     private String name;
     private Double price;
 
-    @JsonIgnore //Faz com que não traga a lista, evitando loop
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
