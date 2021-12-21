@@ -1,5 +1,6 @@
 package com.kemisch.course.resources;
 
+import com.kemisch.course.domain.Request;
 import com.kemisch.course.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class RequestResource {
     RequestService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Integer id){
+    public ResponseEntity<Request> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(service.findById(id));
     }
 

@@ -24,4 +24,8 @@ public class CategoryService {
         return repository.save(category);
     }
 
+    public Category update(Category category) {
+        return repository.save(category);
+    }
+
 }

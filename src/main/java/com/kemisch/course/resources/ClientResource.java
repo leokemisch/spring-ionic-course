@@ -1,5 +1,6 @@
 package com.kemisch.course.resources;
 
+import com.kemisch.course.domain.Client;
 import com.kemisch.course.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class ClientResource {
     ClientService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Integer id) {
+    public ResponseEntity<Client> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 

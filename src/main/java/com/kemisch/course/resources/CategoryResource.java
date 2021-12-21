@@ -16,10 +16,8 @@ public class CategoryResource {
     @Autowired
     CategoryService service;
 
-    // A ? na declaração de retorno do método sinaliza que o objeto a ser retornado não é de um tipo especifico
-    // neste caso em questão podendo retornar null
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Integer id){
+    public ResponseEntity<Category> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(service.findById(id));
     }
 
@@ -27,6 +25,15 @@ public class CategoryResource {
     public ResponseEntity<Void> insert(@RequestBody Category category){
 
         Category obj = service.insert(category);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@RequestBody Category category, @PathVariable Integer id) {
+
+        Category obj = service.update(category);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
