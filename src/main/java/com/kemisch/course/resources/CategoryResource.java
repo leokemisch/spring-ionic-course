@@ -1,6 +1,7 @@
 package com.kemisch.course.resources;
 
 import com.kemisch.course.domain.Category;
+import com.kemisch.course.dto.CategoryDTO;
 import com.kemisch.course.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -19,6 +22,15 @@ public class CategoryResource {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Category> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(service.findById(id));
+    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<CategoryDTO>> findAll(){
+
+        List<CategoryDTO> list = service.findAll().stream().map(
+                category -> new CategoryDTO(category)
+        ).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(list);
     }
 
     @RequestMapping(method = RequestMethod.POST)
