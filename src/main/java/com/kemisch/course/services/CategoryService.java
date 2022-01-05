@@ -2,8 +2,10 @@ package com.kemisch.course.services;
 
 import com.kemisch.course.domain.Category;
 import com.kemisch.course.repositories.CategoryRepository;
+import com.kemisch.course.services.exceptions.DataIntegrityException;
 import com.kemisch.course.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,4 +30,12 @@ public class CategoryService {
         return repository.save(category);
     }
 
+    public void delete(Integer id) {
+
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("It is not possible to delete a category that has products.");
+        }
+    }
 }
