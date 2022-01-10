@@ -4,6 +4,7 @@ import com.kemisch.course.domain.Category;
 import com.kemisch.course.dto.CategoryDTO;
 import com.kemisch.course.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,12 +24,27 @@ public class CategoryResource {
     public ResponseEntity<Category> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(service.findById(id));
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CategoryDTO>> findAll(){
 
         List<CategoryDTO> list = service.findAll().stream().map(
                 category -> new CategoryDTO(category)
         ).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(list);
+    }
+
+    @RequestMapping(value = {"/page"}, method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoryDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction){
+
+        Page<CategoryDTO> list = service.findPage(page, linesPerPage, orderBy, direction).map(
+                category -> new CategoryDTO(category)
+        );
 
         return ResponseEntity.ok().body(list);
     }
