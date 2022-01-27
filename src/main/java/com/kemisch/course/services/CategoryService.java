@@ -1,6 +1,7 @@
 package com.kemisch.course.services;
 
 import com.kemisch.course.domain.Category;
+import com.kemisch.course.dto.CategoryDTO;
 import com.kemisch.course.repositories.CategoryRepository;
 import com.kemisch.course.services.exceptions.DataIntegrityException;
 import com.kemisch.course.services.exceptions.NotFoundException;
@@ -50,5 +51,9 @@ public class CategoryService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("It is not possible to delete a category that has products.");
         }
+    }
+
+    public Category fromDTO(CategoryDTO dto){
+        return new Category(dto.getId(), dto.getName());
     }
 }

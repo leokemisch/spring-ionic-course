@@ -1,23 +1,24 @@
 package com.kemisch.course.dto;
 
-import com.kemisch.course.domain.Category;
+import com.kemisch.course.domain.Client;
 
 import java.io.Serializable;
 
-public class CategoryDTO implements Serializable {
+public class ClientDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-
     private String name;
+    private String mail;
 
-    public CategoryDTO() {
+    public ClientDTO() {
     }
 
-    public CategoryDTO(Category category) {
-        this.id = category.getId();
-        this.name = category.getName();
+    public ClientDTO(Client client) {
+        id = client.getId();
+        name = client.getName();
+        mail = client.getMail();
     }
 
     public Integer getId() {
@@ -34,5 +35,13 @@ public class CategoryDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

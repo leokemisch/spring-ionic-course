@@ -50,8 +50,8 @@ public class CategoryResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Category category){
-
+    public ResponseEntity<Void> insert(@RequestBody CategoryDTO categoryDTO){
+        Category category = service.fromDTO(categoryDTO);
         Category obj = service.insert(category);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
@@ -59,8 +59,8 @@ public class CategoryResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody Category category, @PathVariable Integer id) {
-
+    public ResponseEntity<Void> update(@RequestBody CategoryDTO categoryDTO, @PathVariable Integer id) {
+        Category category = service.fromDTO(categoryDTO);
         Category obj = service.update(category);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 

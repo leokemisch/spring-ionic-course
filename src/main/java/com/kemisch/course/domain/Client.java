@@ -43,7 +43,7 @@ public class Client implements Serializable {
         this.name = name;
         this.mail = mail;
         this.document = document;
-        this.type = type.getId();
+        this.type = (type == null) ? null : type.getId();
     }
 
     public Integer getId() {
