@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,7 @@ public class ClientService {
         return repository.findAll(pageRequest);
     }
 
+    @Transactional
     public Client insert(Client client) {
         return repository.save(client);
     }
