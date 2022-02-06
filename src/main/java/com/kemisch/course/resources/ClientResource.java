@@ -2,6 +2,7 @@ package com.kemisch.course.resources;
 
 import com.kemisch.course.domain.Client;
 import com.kemisch.course.dto.ClientDTO;
+import com.kemisch.course.dto.NewClientDTO;
 import com.kemisch.course.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,8 +51,8 @@ public class ClientResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody ClientDTO clientDTO) {
-        Client client = service.fromDTO(clientDTO);
+    public ResponseEntity<Void> insert(@RequestBody NewClientDTO newClientDTO) {
+        Client client = service.fromDTO(newClientDTO);
         Client obj = service.insert(client);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
