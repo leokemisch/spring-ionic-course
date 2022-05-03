@@ -1,22 +1,33 @@
 package com.kemisch.course.dto;
 
+import com.sun.istack.NotNull;
+
 import java.io.Serializable;
 
 public class NewClientDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull
     private String name;
+    @NotNull
     private String mail;
+    @NotNull
     private String document;
+    @NotNull
     private Integer type;
 
+    @NotNull
     private String street;
+    @NotNull
     private String number;
     private String complement;
+    @NotNull
     private String district;
+    @NotNull
     private String zipcode;
 
+    @NotNull
     private String fone1;
     private String fone2;
     private String fone3;
