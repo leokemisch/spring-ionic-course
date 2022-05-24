@@ -88,7 +88,6 @@ public class ClientService {
         return client;
     }
 
-
     private void updateData(Client toUpdate, Client client) {
         toUpdate.setName(client.getName());
         toUpdate.setMail(client.getMail());
