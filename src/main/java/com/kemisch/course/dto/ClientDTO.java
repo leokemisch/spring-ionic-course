@@ -1,9 +1,11 @@
 package com.kemisch.course.dto;
 
 import com.kemisch.course.domain.Client;
+import com.kemisch.course.services.validation.ClientUpdate;
 
 import java.io.Serializable;
 
+@ClientUpdate
 public class ClientDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
