@@ -32,6 +32,10 @@ public class RequestItem implements Serializable {
         this.price = price;
     }
 
+    public Double getSubTotal() {
+        return (price - discount) * amount;
+    }
+
     @JsonIgnore
     public Request GetRequest() {
         return id.getRequest();

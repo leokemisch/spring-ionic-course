@@ -46,6 +46,16 @@ public class Request implements Serializable {
         this.address = address;
     }
 
+    public Double getTotalValue() {
+
+        Double total = 0.0;
+
+        for(RequestItem item : items)
+            total = total + item.getSubTotal();
+
+        return total;
+    }
+
     public Integer getId() {
         return id;
     }
