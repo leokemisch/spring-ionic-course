@@ -1,5 +1,7 @@
 package com.kemisch.course.dto;
 
+import com.kemisch.course.domain.Product;
+
 import java.io.Serializable;
 
 public class ProductDTO implements Serializable {
@@ -12,6 +14,12 @@ public class ProductDTO implements Serializable {
 
     public ProductDTO() {
 
+    }
+
+    public ProductDTO(Product product){
+        id = product.getId();
+        name = product.getName();
+        price = getPrice();
     }
 
     public Integer getId() {
