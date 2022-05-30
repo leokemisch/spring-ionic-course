@@ -1,6 +1,7 @@
 package com.kemisch.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.kemisch.course.domain.enums.PaymentState;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "payment")
 @Inheritance(strategy = InheritanceType.JOINED) //JOINED generate one table, SINGLE_TABLE one for each subclass
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
